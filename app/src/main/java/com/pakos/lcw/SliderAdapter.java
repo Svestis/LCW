@@ -1,8 +1,11 @@
 package com.pakos.lcw;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,22 +22,21 @@ public class SliderAdapter extends PagerAdapter {
     }
 
     private int[] imgs = {
-            R.drawable.smartwatch100,
-            R.drawable.tvshow100,
-            R.drawable.appsettings
+            R.drawable.shopping,
+            R.drawable.optionset,
+            R.drawable.start
     };
 
     private String[] heading_txt = {
-            "Lorem ipsum 1",
-            "Lorem ipsum 2",
-            "Lorem ipsum 3"
+            "Welcome!",
+            "Now what?",
+            "How?"
     };
 
     private String[] txt = {
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    };
+            "Thank you for purchasing Pectus\u2122 ,\nthe new generation wearable.\nLets get started with the basics!",
+            "You are almost there. You will just need to pair your device and you are all set!\nThe app will guide you through.",
+            "Simply click next and explore the \u221e options. You can always come back here through the app settings."};
 
     @Override
     public int getCount() {

@@ -26,7 +26,7 @@
         android:layout_below="@+id/imageView"
         android:layout_marginEnd="76dp"
         android:layout_marginRight="76dp"
-        android:layout_marginBottom="-21dp"
+        android:layout_marginBottom="-23dp"
         android:text="@string/textView"
         android:textColor="@color/white"
         android:textStyle="bold" />
