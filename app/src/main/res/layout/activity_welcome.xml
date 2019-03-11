@@ -18,11 +18,12 @@
             android:layout_width="350dp"
             android:layout_height="350dp"
             android:layout_gravity="center"
-            android:src="@drawable/logo" />
+            android:src="@drawable/logo"
+            android:contentDescription="@string/cont_desc_welcome_img"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome to LCW"
+            android:text="@string/welcome"
             android:textSize="25sp"
             android:textStyle="bold"
             android:textColor="@color/colorPrimaryDark"
@@ -32,7 +33,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delivering excellence and real value!"
+            android:text="@string/welcome_msg"
             android:textSize="15sp"
             android:textStyle="bold"
             android:textColor="@color/colorPrimaryDark"

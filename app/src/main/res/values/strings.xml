@@ -6,6 +6,10 @@
     <string name="menuDesc">Menu icon</string>
     <string name="textView">TextView</string>
     <string name="skip">Skip</string>
+    <string name="start">Start</string>
+    <string name="welcome">Welcome to LCW</string>
+    <string name="cont_desc_welcome_img">Logo/Welcoming image</string>
+    <string name="welcome_msg">Delivering excellence and real value!</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

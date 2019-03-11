@@ -15,7 +15,6 @@ public class FirstStart extends AppCompatActivity {
 
     private ViewPager viewPager;
     private LinearLayout dots;
-    private SliderAdapter sliderAdapter;
     private TextView[] mydots;
     private Button next;
     private Button back;
@@ -33,7 +32,7 @@ public class FirstStart extends AppCompatActivity {
         dots =  findViewById(R.id.relativeLayout);
         next =  findViewById(R.id.button_right);
         back =  findViewById(R.id.button_left);
-        sliderAdapter = new SliderAdapter(this);
+        SliderAdapter sliderAdapter = new SliderAdapter(this);
         viewPager.setAdapter(sliderAdapter);
         addDotsIndicator(0);
         viewPager.addOnPageChangeListener(viewListener);
@@ -54,6 +53,7 @@ public class FirstStart extends AppCompatActivity {
             public void onClick(View v) {
                 deviceIntent = new Intent(FirstStart.this,DeviceList.class);
                 startActivity(deviceIntent);
+                finish();
             }
         };
         next.setOnClickListener(nextClick);
@@ -90,20 +90,20 @@ public class FirstStart extends AppCompatActivity {
             addDotsIndicator(i);
             currentPage = i;
             if(i==0){
-                next.setText("Next");
-                back.setText("Skip");
+                next.setText(R.string.next);
+                back.setText(R.string.skip);
                 back.setOnClickListener(intentClick);
                 next.setOnClickListener(nextClick);
             }
             else if(i==mydots.length-1){
-                next.setText("Start");
-                back.setText("Back");
+                next.setText(R.string.start);
+                back.setText(R.string.back);
                 next.setOnClickListener(intentClick);
                 back.setOnClickListener(previousClick);
             }
             else {
-                next.setText("Next");
-                back.setText("Back");
+                next.setText(R.string.next);
+                back.setText(R.string.back);
                 next.setOnClickListener(nextClick);
                 back.setOnClickListener(previousClick);
             }
