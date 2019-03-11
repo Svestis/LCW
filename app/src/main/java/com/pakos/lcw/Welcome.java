@@ -33,7 +33,7 @@ public class Welcome extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent deviceIntent = new Intent(Welcome.this,SelectDevice.class);
+                Intent deviceIntent = new Intent(Welcome.this, FirstStart.class);
                 startActivity(deviceIntent);
                 finish();
             }

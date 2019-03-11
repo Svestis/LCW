@@ -1,8 +1,6 @@
 package com.pakos.lcw;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,7 +10,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class SelectDevice extends AppCompatActivity {
+public class FirstStart extends AppCompatActivity {
 
 
     private ViewPager viewPager;
@@ -22,12 +20,15 @@ public class SelectDevice extends AppCompatActivity {
     private Button next;
     private Button back;
     private int currentPage;
+    Intent deviceIntent;
+    View.OnClickListener nextClick;
+    View.OnClickListener previousClick;
+    View.OnClickListener intentClick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_device_onboarding);
-
         viewPager =  findViewById(R.id.slideView);
         dots =  findViewById(R.id.relativeLayout);
         next =  findViewById(R.id.button_right);
@@ -36,35 +37,27 @@ public class SelectDevice extends AppCompatActivity {
         viewPager.setAdapter(sliderAdapter);
         addDotsIndicator(0);
         viewPager.addOnPageChangeListener(viewListener);
-
-        next.setOnClickListener(new View.OnClickListener() {
+        nextClick = new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                if(currentPage==2){
-                    Intent deviceIntent = new Intent(SelectDevice.this,DeviceList.class);
-                    startActivity(deviceIntent);
-                }
-                else{
-                    viewPager.setCurrentItem(currentPage+1);}
+            public void onClick(View v) {
+                viewPager.setCurrentItem(currentPage+1);
             }
-        });
-
-        back.setOnClickListener(new View.OnClickListener() {
+        };
+        previousClick = new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                if(currentPage==0){
-                    Intent deviceIntent = new Intent(SelectDevice.this,DeviceList.class);
-                    startActivity(deviceIntent);
-                }
-                else{
-                    viewPager.setCurrentItem(currentPage-1);
-                }
-
+            public void onClick(View v) {
+                viewPager.setCurrentItem(currentPage-1);
             }
-        });
-
-
-
+        };
+        intentClick = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deviceIntent = new Intent(FirstStart.this,DeviceList.class);
+                startActivity(deviceIntent);
+            }
+        };
+        next.setOnClickListener(nextClick);
+        back.setOnClickListener(intentClick);
     }
 
     public void addDotsIndicator(int position) {
@@ -97,27 +90,22 @@ public class SelectDevice extends AppCompatActivity {
             addDotsIndicator(i);
             currentPage = i;
             if(i==0){
-                next.setEnabled(true);
-                back.setEnabled(false);
-                back.setVisibility(View.VISIBLE);
                 next.setText("Next");
                 back.setText("Skip");
+                back.setOnClickListener(intentClick);
+                next.setOnClickListener(nextClick);
             }
             else if(i==mydots.length-1){
-                next.setEnabled(true);
-                back.setEnabled(true);
-                next.setVisibility(View.VISIBLE);
-                back.setVisibility(View.VISIBLE);
                 next.setText("Start");
                 back.setText("Back");
+                next.setOnClickListener(intentClick);
+                back.setOnClickListener(previousClick);
             }
             else {
-                next.setEnabled(true);
-                back.setEnabled(true);
-                next.setVisibility(View.VISIBLE);
-                back.setVisibility(View.VISIBLE);
                 next.setText("Next");
                 back.setText("Back");
+                next.setOnClickListener(nextClick);
+                back.setOnClickListener(previousClick);
             }
         }
 
