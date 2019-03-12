@@ -31,9 +31,9 @@ public class SliderAdapter extends PagerAdapter {
     };
 
     private String[] txt = {
-            "Thank you for purchasing Pectus\u2122 ,\nthe new generation wearable.\nLets get started with the basics!",
-            "You are almost there. You will just need to pair your device and you are all set!\nThe app will guide you through.",
-            "Simply click next and explore the \u221e options. You can always come back here through the app settings."};
+            "\nThank you for purchasing Pectus\u2122,\nthe new generation wearable.\n\nLets get started!",
+            "\nYou will just need to pair your device and you are all set!\n\nThe app will guide you through.",
+            "Simply click next and explore the \u221e options!"};
 
     @Override
     public int getCount() {

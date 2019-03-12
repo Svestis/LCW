@@ -1,9 +1,12 @@
 package com.pakos.lcw;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AlertDialogLayout;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +26,7 @@ public class FirstStart extends AppCompatActivity {
     View.OnClickListener nextClick;
     View.OnClickListener previousClick;
     View.OnClickListener intentClick;
+    View.OnClickListener skipClick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +46,14 @@ public class FirstStart extends AppCompatActivity {
                 viewPager.setCurrentItem(currentPage+1);
             }
         };
+
         previousClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 viewPager.setCurrentItem(currentPage-1);
             }
         };
+
         intentClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,8 +62,55 @@ public class FirstStart extends AppCompatActivity {
                 finish();
             }
         };
+
+        skipClick = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(FirstStart.this);
+                builder.setMessage("You can always come back here via the app settings!");
+                builder.setCancelable(false);
+                builder.setTitle("Are you sure you want to Skip?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deviceIntent = new Intent(FirstStart.this,DeviceList.class);
+                        startActivity(deviceIntent);
+                        finish();
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.create();
+                builder.show();
+            }
+        };
+        back.setOnClickListener(skipClick);
         next.setOnClickListener(nextClick);
-        back.setOnClickListener(intentClick);
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(FirstStart.this);
+        builder.setCancelable(false);
+        builder.setTitle("Are you sure you want to Exit?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.create();
+        builder.show();
     }
 
     public void addDotsIndicator(int position) {
@@ -92,7 +145,7 @@ public class FirstStart extends AppCompatActivity {
             if(i==0){
                 next.setText(R.string.next);
                 back.setText(R.string.skip);
-                back.setOnClickListener(intentClick);
+                back.setOnClickListener(skipClick);
                 next.setOnClickListener(nextClick);
             }
             else if(i==mydots.length-1){
