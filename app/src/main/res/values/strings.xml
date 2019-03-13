@@ -175,4 +175,6 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_intend_holder">IntendHolder</string>
+    <string name="are_you_sure_you_want_to_skip">Are you sure you want to Skip?</string>
+    <string name="you_can_always_come_back">You can always come back here via the app settings!</string>
 </resources>

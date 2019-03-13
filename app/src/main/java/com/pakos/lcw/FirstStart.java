@@ -1,12 +1,17 @@
 package com.pakos.lcw;
-
+//todo: DONE customize alert dialog appearance for skip into
+//todo: DONE button appearance on alert dialog for skip
+//todo: make the intend open only on first load
+//todo: change button appearance on alert dialog for quit
+//todo: customize alert dialog appearance for quit app
+//todo: change button appearance on click
+//todo: getting things ready intent
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.AlertDialogLayout;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
@@ -63,29 +68,61 @@ public class FirstStart extends AppCompatActivity {
             }
         };
 
+//        skipClick = new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                final AlertDialog.Builder builder = new AlertDialog.Builder(FirstStart.this);
+//                final View customAlert = getLayoutInflater().inflate(R.layout.alert_dialog_skip_firststart, null);
+//                builder.setCancelable(false);
+//                Button skip = customAlert.findViewById(R.id.cancel_btn);
+//                Button doskip = customAlert.findViewById(R.id.yes_btn);
+//                builder.setView(customAlert);
+//                final AlertDialog dialog = builder.create();
+//                dialog.show();
+//                skip.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        dialog.dismiss();
+//                    }
+//                });
+//                doskip.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        deviceIntent = new Intent(FirstStart.this,DeviceList.class);
+//                        startActivity(deviceIntent);
+//                        finish();
+//                    }
+//                });
+//            }
+//        };
+//        back.setOnClickListener(skipClick);
+//        next.setOnClickListener(nextClick);
+
         skipClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(FirstStart.this);
-                builder.setMessage("You can always come back here via the app settings!");
+                final AlertDialog.Builder builder = new AlertDialog.Builder(FirstStart.this);
+                final View customAlert = getLayoutInflater().inflate(R.layout.alert_dialog_skip_firststart, null);
                 builder.setCancelable(false);
-                builder.setTitle("Are you sure you want to Skip?");
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                Button skip = customAlert.findViewById(R.id.cancel_btn);
+                Button doskip = customAlert.findViewById(R.id.yes_btn);
+                builder.setView(customAlert);
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+                skip.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                doskip.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
                         deviceIntent = new Intent(FirstStart.this,DeviceList.class);
                         startActivity(deviceIntent);
                         finish();
                     }
                 });
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                builder.create();
-                builder.show();
             }
         };
         back.setOnClickListener(skipClick);
