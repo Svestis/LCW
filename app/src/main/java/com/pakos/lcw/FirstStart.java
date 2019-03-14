@@ -1,18 +1,21 @@
 package com.pakos.lcw;
-//todo: DONE customize alert dialog appearance for skip into
-//todo: DONE button appearance on alert dialog for skip
+//COMPLETED: DONE customize alert dialog appearance for skip into
+//COMPLETED: DONE button appearance on alert dialog for skip
 //todo: make the intend open only on first load
 //todo: change button appearance on alert dialog for quit
 //todo: customize alert dialog appearance for quit app
 //todo: change button appearance on click
 //todo: getting things ready intent
+//COMPLETED: fixing onbackpressed for skip View
+//COMPLETED: fix deprecated html + get color
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.text.HtmlCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -20,14 +23,12 @@ import android.widget.TextView;
 
 public class FirstStart extends AppCompatActivity {
 
-
     private ViewPager viewPager;
     private LinearLayout dots;
     private TextView[] mydots;
     private Button next;
     private Button back;
     private int currentPage;
-    Intent deviceIntent;
     View.OnClickListener nextClick;
     View.OnClickListener previousClick;
     View.OnClickListener intentClick;
@@ -62,41 +63,10 @@ public class FirstStart extends AppCompatActivity {
         intentClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deviceIntent = new Intent(FirstStart.this,DeviceList.class);
-                startActivity(deviceIntent);
+                startActivity(new Intent(FirstStart.this,DeviceList.class));
                 finish();
             }
         };
-
-//        skipClick = new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                final AlertDialog.Builder builder = new AlertDialog.Builder(FirstStart.this);
-//                final View customAlert = getLayoutInflater().inflate(R.layout.alert_dialog_skip_firststart, null);
-//                builder.setCancelable(false);
-//                Button skip = customAlert.findViewById(R.id.cancel_btn);
-//                Button doskip = customAlert.findViewById(R.id.yes_btn);
-//                builder.setView(customAlert);
-//                final AlertDialog dialog = builder.create();
-//                dialog.show();
-//                skip.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//                doskip.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        deviceIntent = new Intent(FirstStart.this,DeviceList.class);
-//                        startActivity(deviceIntent);
-//                        finish();
-//                    }
-//                });
-//            }
-//        };
-//        back.setOnClickListener(skipClick);
-//        next.setOnClickListener(nextClick);
 
         skipClick = new View.OnClickListener() {
             @Override
@@ -109,6 +79,7 @@ public class FirstStart extends AppCompatActivity {
                 builder.setView(customAlert);
                 final AlertDialog dialog = builder.create();
                 dialog.show();
+                dialog.setCanceledOnTouchOutside(true);
                 skip.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -118,16 +89,14 @@ public class FirstStart extends AppCompatActivity {
                 doskip.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        deviceIntent = new Intent(FirstStart.this,DeviceList.class);
-                        startActivity(deviceIntent);
+                        startActivity(new Intent(FirstStart.this,DeviceList.class));
                         finish();
                     }
                 });
             }
         };
         back.setOnClickListener(skipClick);
-        next.setOnClickListener(nextClick);
-    }
+        next.setOnClickListener(nextClick);   }
 
     @Override
     public void onBackPressed() {
@@ -155,16 +124,18 @@ public class FirstStart extends AppCompatActivity {
         dots.removeAllViews();
         for(int i = 0; i<mydots.length; i++){
             mydots[i] = new TextView(this);
-            mydots[i].setText(Html.fromHtml("&#8226"));
+            mydots[i].setText(HtmlCompat.fromHtml("&#8226",HtmlCompat.FROM_HTML_MODE_LEGACY));
             mydots[i].setTextSize(35);
-            mydots[i].setTextColor(getResources().getColor(R.color.transparent));
+            int colorchange = ContextCompat.getColor(this,R.color.transparent);
+            mydots[i].setTextColor(colorchange);
             dots.addView(mydots[i]);
 
 
         }
 
         if(mydots.length>0){
-            mydots[position].setTextColor(getResources().getColor(R.color.white));
+            int color = ContextCompat.getColor(this, R.color.white);
+            mydots[position].setTextColor(color);
         }
     }
 
@@ -201,7 +172,6 @@ public class FirstStart extends AppCompatActivity {
 
         @Override
         public void onPageScrollStateChanged(int i) {
-
         }
     };
 }
