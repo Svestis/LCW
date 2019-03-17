@@ -6,6 +6,7 @@ package com.pakos.lcw;
 //todo: customize alert dialog appearance for quit app
 //todo: change button appearance on click
 //todo: getting things ready intent
+//REMOVED: entirely close app on back
 //COMPLETED: fixing onbackpressed for skip View
 //COMPLETED: fix deprecated html + get color
 import android.content.DialogInterface;
