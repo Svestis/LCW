@@ -1,7 +1,7 @@
 package com.pakos.lcw;
 //COMPLETED: DONE customize alert dialog appearance for skip into
 //COMPLETED: DONE button appearance on alert dialog for skip
-//todo: make the intend open only on first load
+//COMPLETED: make the intend open only on first load
 //todo: change button appearance on alert dialog for quit
 //todo: customize alert dialog appearance for quit app
 //todo: change button appearance on click
@@ -11,6 +11,7 @@ package com.pakos.lcw;
 //COMPLETED: fix deprecated html + get color
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.text.HtmlCompat;
 import android.support.v4.view.ViewPager;
@@ -23,7 +24,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class FirstStart extends AppCompatActivity {
-
+    SharedPreferences sharedPreferences;
+    Boolean firstTimeOpen;
     private ViewPager viewPager;
     private LinearLayout dots;
     private TextView[] mydots;
@@ -37,6 +39,12 @@ public class FirstStart extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPreferences = getSharedPreferences("Preferences", MODE_PRIVATE);
+        firstTimeOpen = sharedPreferences.getBoolean("firstTimeOpen",true);
+        if(firstTimeOpen==false){
+            startActivity(new Intent(FirstStart.this,DeviceList.class));
+            finish();
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_device_onboarding);
         viewPager =  findViewById(R.id.slideView);
@@ -64,6 +72,10 @@ public class FirstStart extends AppCompatActivity {
         intentClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                firstTimeOpen = false;
+                editor.putBoolean("firstTimeOpen", firstTimeOpen);
+                editor.apply();
                 startActivity(new Intent(FirstStart.this,DeviceList.class));
                 finish();
             }
@@ -90,6 +102,10 @@ public class FirstStart extends AppCompatActivity {
                 doskip.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        firstTimeOpen = false;
+                        editor.putBoolean("firstTimeOpen", firstTimeOpen);
+                        editor.apply();
                         startActivity(new Intent(FirstStart.this,DeviceList.class));
                         finish();
                     }
