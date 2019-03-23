@@ -37,6 +37,12 @@ public class FirstStart extends AppCompatActivity {
     View.OnClickListener intentClick;
     View.OnClickListener skipClick;
 
+    public void shared_pref() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        firstTimeOpen = false;
+        editor.putBoolean("firstTimeOpen", firstTimeOpen);
+        editor.apply();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPreferences = getSharedPreferences("Preferences", MODE_PRIVATE);
@@ -72,10 +78,7 @@ public class FirstStart extends AppCompatActivity {
         intentClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                firstTimeOpen = false;
-                editor.putBoolean("firstTimeOpen", firstTimeOpen);
-                editor.apply();
+                shared_pref();
                 startActivity(new Intent(FirstStart.this,DeviceList.class));
                 finish();
             }
@@ -102,10 +105,7 @@ public class FirstStart extends AppCompatActivity {
                 doskip.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        firstTimeOpen = false;
-                        editor.putBoolean("firstTimeOpen", firstTimeOpen);
-                        editor.apply();
+                        shared_pref();
                         startActivity(new Intent(FirstStart.this,DeviceList.class));
                         finish();
                     }
