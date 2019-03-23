@@ -47,7 +47,7 @@ public class FirstStart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         sharedPreferences = getSharedPreferences("Preferences", MODE_PRIVATE);
         firstTimeOpen = sharedPreferences.getBoolean("firstTimeOpen",true);
-        if(firstTimeOpen==false){
+        if(!firstTimeOpen){
             startActivity(new Intent(FirstStart.this,DeviceList.class));
             finish();
         }

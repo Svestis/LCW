@@ -41,7 +41,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:src="@drawable/bluetooth_img"
-            android:background="@color/white"/>
+            android:background="@color/white"
+            android:contentDescription="@string/content_desc_action_reest_enable_blt" />
 
         <ImageButton
             android:id="@+id/cancel_enable_blt"
@@ -52,7 +53,10 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:src="@drawable/cancel"
-            android:background="@color/white"/>
+            android:background="@color/white"
+            android:contentDescription="@string/content_desc_action_reest_enable_blt"
+            android:layout_marginEnd="30dp"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
 
