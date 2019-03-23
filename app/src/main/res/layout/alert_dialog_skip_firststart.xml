@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/alert_frame"
     android:padding="5dp">
 
     <TextView
@@ -24,7 +24,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:textStyle="bold"
-        android:textColor="@color/gretwhite"/>
+        android:textColor="@color/grey"/>
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -40,8 +40,9 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:text="@string/yes"
-            android:background="@drawable/btn_royal"
+            android:background="@drawable/btn_blue"
             android:textColor="@color/white"/>
+        <!--android:background="@drawable/btn_royal"-->
 
         <Button
             android:id="@+id/cancel_btn"
@@ -51,7 +52,7 @@
             android:layout_marginRight="30dp"
             android:layout_marginTop="20dp"
             android:text="@string/cancel"
-            android:background="@drawable/btn_grey"
+            android:background="@drawable/btn_blue"
             android:textColor="@color/white"/>
     </RelativeLayout>
 

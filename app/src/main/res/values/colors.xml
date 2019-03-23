@@ -6,5 +6,6 @@
     <color name="white">#ffffff</color>
     <color name="transparent">#cccccc</color>
     <color name="gretwhite">#B6B5B5</color>
-    <color name="blue">#CD313188</color>
+    <color name="blue">#1a2980</color>
+    <color name="grey">#C3BEBEBE</color>
 </resources>
