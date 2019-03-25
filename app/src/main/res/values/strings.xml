@@ -13,6 +13,7 @@
     <string name="enable_bluetooth">Please enable your bluetooth</string>
     <string name="enable_bluetooth_sub">We will need it to pair your device!</string>
     <string name="paired_dev">PAIRED DEVICES</string>
+    <string name="paired_dev2">FIND ALL DEVICES</string>
     <string name="content_desc_action_reest_enable_blt">Bluetooth enable/do not enable</string>
     <string name="slider_txt_1">Thank you for purchasing Pectus, the new generation wearable. Lets get started with the basics! If you want to skip directly to the fun just tap SKIP, dont worry you can always come back</string>
     <string name="large_text">
