@@ -4,11 +4,16 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.circularreveal.CircularRevealRelativeLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +22,11 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuCreator;
+import com.baoyz.swipemenulistview.SwipeMenuItem;
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -24,10 +34,11 @@ import java.util.Set;
 public class DeviceList extends AppCompatActivity
 {
     Button btnPaired;
-    ListView devicelist;
+    SwipeMenuListView devicelist;
     private BluetoothAdapter myBluetooth = null;
     private Set<BluetoothDevice> pairedDevices;
     public static String EXTRA_ADDRESS = "device_address";
+
 
     public void alert_Bluetooth(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(DeviceList.this);
@@ -93,10 +104,12 @@ public class DeviceList extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_device_list);
+        setContentView(R.layout.device_list_slide);
         btnPaired = findViewById(R.id.buttonpairdevices);
-        devicelist = findViewById(R.id.listpaireddevices);
+        devicelist = findViewById(R.id.swipe_device_list_view);
         myBluetooth = BluetoothAdapter.getDefaultAdapter();
+
+
 
         if(myBluetooth == null)
         {
@@ -121,7 +134,6 @@ public class DeviceList extends AppCompatActivity
             }
         });
     }
-
     private void pairedDevicesList()
     {
         pairedDevices = myBluetooth.getBondedDevices();
@@ -140,22 +152,35 @@ public class DeviceList extends AppCompatActivity
 
         final ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, list);
         devicelist.setAdapter(adapter);
-        devicelist.setOnItemClickListener(myListClickListener);
 
+        SwipeMenuCreator creator = new SwipeMenuCreator() {
+            @Override
+            public void create(SwipeMenu menu) {
+                SwipeMenuItem connect = new SwipeMenuItem(
+                        getApplicationContext());
+                connect.setBackground(new ColorDrawable(Color.rgb(0xF9,
+                        0x3F, 0x25)));
+                connect.setWidth((90));
+                connect.setIcon(R.drawable.ic_bluetooth);
+                menu.addMenuItem(connect);
+            }
+        };
+        devicelist.setMenuCreator(creator);
+        devicelist.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                switch (index) {
+                    case 0:
+                        String address = myBluetooth.getAddress();
+                        Intent blt_menu = new Intent(DeviceList.this, ledControl.class);
+                        blt_menu.putExtra(EXTRA_ADDRESS, address);
+                        startActivity(blt_menu);
+                        break;
+                }
+                return false;
+            }
+        });
     }
-
-    private AdapterView.OnItemClickListener myListClickListener = new AdapterView.OnItemClickListener()
-    {
-        public void onItemClick (AdapterView<?> av, View v, int arg2, long arg3)
-        {
-            String info = ((TextView) v).getText().toString();
-            String address = info.substring(info.length() - 17);
-            Intent i = new Intent(DeviceList.this, ledControl.class);
-            i.putExtra(EXTRA_ADDRESS, address);
-            startActivity(i);
-        }
-    };
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
