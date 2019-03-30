@@ -1,27 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.circularreveal.CircularRevealRelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/new_curcular_id"
-    >
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refreshLayout"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:id="@+id/title_blt"
+        android:text="@string/blt_title"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:background="@drawable/gradientblue"
+        android:textColor="@color/white"/>
+    <com.baoyz.widget.PullRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlEnableFooterFollowWhenLoadFinished="true"
-        app:srlEnableScrollContentWhenLoaded="true"
-        >
+        android:layout_below="@+id/title_blt">
 
         <com.baoyz.swipemenulistview.SwipeMenuListView
             android:layout_width="match_parent"
             android:accessibilityPaneTitle="@string/paired_dev"
             android:layout_height="match_parent"
-            android:id="@+id/swipe_device_list_view"></com.baoyz.swipemenulistview.SwipeMenuListView>
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+            android:id="@+id/swipe_device_list_view"
+            android:layout_weight="1">
 
+        </com.baoyz.swipemenulistview.SwipeMenuListView>
+
+    </com.baoyz.widget.PullRefreshLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,12 +43,12 @@
         android:layout_height="wrap_content"
         android:text="@string/paired_dev2"
         android:id="@+id/buttonpairdevices"
-        android:layout_alignEnd="@+id/refreshLayout"
-        android:layout_alignLeft="@id/refreshLayout"
-        android:layout_alignBottom="@+id/refreshLayout"
-        android:layout_alignRight="@+id/refreshLayout"
-        android:background="@drawable/btn_royal"
-        android:layout_alignStart="@+id/refreshLayout"
+        android:layout_alignEnd="@+id/swipeRefreshLayout"
+        android:layout_alignLeft="@+id/swipeRefreshLayout"
+        android:layout_alignBottom="@+id/swipeRefreshLayout"
+        android:layout_alignRight="@+id/swipeRefreshLayout"
+        android:background="@drawable/btn_blue_1_1"
+        android:layout_alignStart="@+id/swipeRefreshLayout"
         android:textColor="@color/white"
         android:textSize="15sp">
     </Button>
