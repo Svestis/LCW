@@ -14,27 +14,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.Toast;
-import com.baoyz.swipemenulistview.SwipeMenu;
-import com.baoyz.swipemenulistview.SwipeMenuCreator;
-import com.baoyz.swipemenulistview.SwipeMenuItem;
-import com.baoyz.swipemenulistview.SwipeMenuListView;
-import com.baoyz.widget.PullRefreshLayout;
 import java.util.ArrayList;
 import java.util.Set;
 
 public class DeviceList extends AppCompatActivity
 {
     Button btnPaired;
-    SwipeMenuListView devicelist;
-    ArrayList list = new ArrayList();
+    ListView devicelist;
     private BluetoothAdapter myBluetooth = null;
     private Set<BluetoothDevice> pairedDevices;
     public static String EXTRA_ADDRESS = "device_address";
-    PullRefreshLayout pull_refresh_layout;
 
     public void alert_Bluetooth(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(DeviceList.this);
@@ -105,9 +100,6 @@ public class DeviceList extends AppCompatActivity
         btnPaired = findViewById(R.id.buttonpairdevices);
         devicelist = findViewById(R.id.swipe_device_list_view);
         myBluetooth = BluetoothAdapter.getDefaultAdapter();
-        pull_refresh_layout = findViewById(R.id.swipeRefreshLayout);
-        setRefresh();
-
         if(myBluetooth == null)
         {
             Toast.makeText(getApplicationContext(), "Bluetooth Device Not Available", Toast.LENGTH_LONG).show();
@@ -123,8 +115,7 @@ public class DeviceList extends AppCompatActivity
             public void onClick(View v)
             {
                 if (myBluetooth.isEnabled()) {
-                    list.clear();
-                    pairedDevicesList();
+                    showpaired();
                 }
                 else {
                     alert_Bluetooth();
@@ -133,83 +124,23 @@ public class DeviceList extends AppCompatActivity
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void setRefresh(){
-        pull_refresh_layout.setRefreshStyle(PullRefreshLayout.STYLE_SMARTISAN);
-        pull_refresh_layout.setColor(getColor(R.color.tirk));
-        pull_refresh_layout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                list.clear();
-                pairedDevicesList();
-                new AsyncTask<Void,String,String>(){
-                    @Override
-                    protected String doInBackground(Void... voids) {
-                        try {
-                            Thread.sleep(1500);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        return null;
-                        }
-                        @Override
-                    protected void onPostExecute(String s) {
-                        super.onPostExecute(s);
-                        pull_refresh_layout.setRefreshing(false);
-                    }
-                    }.execute();
-                }
-            });
-    }
-
     private void showpaired(){
         pairedDevices = myBluetooth.getBondedDevices();
+        ArrayList list = new ArrayList();
         if (pairedDevices.size()>0)
         {
             for(BluetoothDevice bt : pairedDevices)
             {
                 list.add(device_type(bt.getBluetoothClass().getMajorDeviceClass()) + " " + bt.getName());
             }
-
         }
         else
         {
             Toast.makeText(getApplicationContext(), "No Paired Bluetooth Devices Found.", Toast.LENGTH_LONG).show();
         }
-    }
-
-    private void pairedDevicesList()
-    {
-        showpaired();
         final ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, list);
         devicelist.setAdapter(adapter);
-
-        SwipeMenuCreator creator = new SwipeMenuCreator() {
-            @Override
-            public void create(SwipeMenu menu) {
-                SwipeMenuItem connect = new SwipeMenuItem(
-                        getApplicationContext());
-                connect.setBackground(new ColorDrawable(ResourcesCompat.getColor(getResources(),R.color.tirk,null)));
-                connect.setWidth((90));
-                connect.setIcon(R.drawable.ic_bluetooth_2);
-                menu.addMenuItem(connect);
-            }
-        };
-        devicelist.setMenuCreator(creator);
-        devicelist.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
-                switch (index) {
-                    case 0:
-                        String address = myBluetooth.getAddress();
-                        Intent blt_menu = new Intent(DeviceList.this, ledControl.class);
-                        blt_menu.putExtra(EXTRA_ADDRESS, address);
-                        startActivity(blt_menu);
-                        break;
-                }
-                return false;
-            }
-        });
+        devicelist.setOnItemClickListener(myListClickListener);
     }
 
     @Override
@@ -219,12 +150,13 @@ public class DeviceList extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+    private AdapterView.OnItemClickListener myListClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            String address = myBluetooth.getAddress();
+            Intent blt_menu = new Intent(DeviceList.this, ledControl.class);
+            blt_menu.putExtra(EXTRA_ADDRESS, address);
+            startActivity(blt_menu);
         }
-        return super.onOptionsItemSelected(item);
-    }
+    };
 }
