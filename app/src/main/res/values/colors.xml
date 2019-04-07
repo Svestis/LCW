@@ -10,4 +10,6 @@
     <color name="blue">#1a2980</color>
     <color name="grey">#C3BEBEBE</color>
     <color name="tirk">#26d0ce</color>
+    <color name="black">#000000</color>
+    <color name="textback">#707070</color>
 </resources>

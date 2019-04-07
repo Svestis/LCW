@@ -1,0 +1,27 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/grey">
+
+    <TextClock
+        android:id="@+id/textClockdig"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:textColor="@color/black"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textClockdig"
+        android:gravity="center"
+        android:id="@+id/textViewdate"
+        android:visibility="visible"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+
+</RelativeLayout>

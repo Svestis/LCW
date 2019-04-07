@@ -17,6 +17,11 @@
     <string name="pull_to_refresh">Swipe ◀ to select / Pull 🔻 to refresh</string>
     <string name="content_desc_action_reest_enable_blt">Bluetooth enable/do not enable</string>
     <string name="blt_title">Select your device</string>
+    <string name="display_stopwatch">00:00.00</string>
+    <string name="btn_start">Start</string>
+    <string name="btn_reset">Reset</string>
+    <string name="btn_stop">Stop</string>
+    <string name="btn_lap">Lap</string>
     <string name="slider_txt_1">Thank you for purchasing Pectus, the new generation wearable. Lets get started with the basics! If you want to skip directly to the fun just tap SKIP, dont worry you can always come back</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
@@ -188,4 +193,5 @@
     <string name="cancel">Cancel</string>
     <string name="title_activity_action_request_enable_bluetooth">action_request_enable_bluetooth
     </string>
+    <string name="title_activity_basic">basic</string>
 </resources>
