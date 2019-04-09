@@ -154,7 +154,7 @@ public class DeviceList extends AppCompatActivity
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             String address = myBluetooth.getAddress();
-            Intent blt_menu = new Intent(DeviceList.this, ledControl.class);
+            Intent blt_menu = new Intent(DeviceList.this, AppMenu.class);
             blt_menu.putExtra(EXTRA_ADDRESS, address);
             startActivity(blt_menu);
         }
