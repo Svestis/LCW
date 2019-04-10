@@ -16,9 +16,6 @@
             android:name=".AppMenu"
             android:label="@string/title_activity_app_menu"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Clock_Analog" />
-        <activity android:name=".Stopwatch" />
-        <activity android:name=".Clock_digital" />
         <activity android:name=".FirstStart" />
         <activity android:name=".DeviceList" />
         <activity android:name=".ledControl" />

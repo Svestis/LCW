@@ -17,17 +17,15 @@ public class Welcome extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        MediaPlayer welcomeSound = MediaPlayer.create(this,R.raw.welcomesound);
         TextView welcomeText = findViewById(R.id.welcomeText);
         TextView welcomeTextSub = findViewById(R.id.welcomeText2);
         ImageView welcomeImage = findViewById(R.id.welcomeImage);
         Animation welcomeAnim = AnimationUtils.loadAnimation(this,R.anim.welcometransition);
-        welcomeSound.start();
         welcomeText.startAnimation(welcomeAnim);
         welcomeTextSub.startAnimation(welcomeAnim);
         welcomeImage.startAnimation(welcomeAnim);
 
-        int SPLASH_TIME_OUT = 4000;
+        int SPLASH_TIME_OUT = 2500;
         new Handler().postDelayed(new Runnable() {
 
             @Override

@@ -38,9 +38,6 @@ public class ledControl extends AppCompatActivity {
 
     //Bitmap bMap = BitmapFactory.decodeFile("file:///com/led/led/car.bmp");
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
