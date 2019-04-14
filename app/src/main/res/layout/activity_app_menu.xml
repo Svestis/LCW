@@ -9,21 +9,25 @@
         android:layout_width="fill_parent"
         android:layout_height="0px"
         android:layout_weight="0.5"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        >
 
         <ImageButton
             android:id="@+id/menu_act1"
             android:layout_width="0px"
             android:layout_height="fill_parent"
             android:layout_weight="0.5"
-            android:background="@drawable/menu_alarm_clock"/>
+            android:background="@drawable/layer_menu_bulb"
+            />
 
         <ImageButton
             android:id="@+id/menu_act2"
             android:layout_width="0px"
             android:layout_height="fill_parent"
             android:layout_weight="0.5"
-            android:background="@drawable/menu_img" />
+            android:src="@drawable/layer_menu_img"
+            android:background="@color/transparent"
+            />
 
     </LinearLayout>
 
@@ -39,7 +43,7 @@
             android:layout_width="0px"
             android:layout_height="fill_parent"
             android:layout_weight="0.5"
-            android:background="@drawable/menu_music"/>
+            android:background="@drawable/layer_menu_audio"/>
 
         <ImageButton
             android:id="@+id/menu_act4"
@@ -47,7 +51,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="0.5"
             android:text="Button"
-            android:background="@drawable/menu_txt"/>
+            android:background="@drawable/layer_menu_txt"/>
 
     </LinearLayout>
     <LinearLayout
@@ -61,16 +65,51 @@
             android:layout_width="0px"
             android:layout_height="fill_parent"
             android:layout_weight="0.5"
-            android:background="@drawable/menu_bulb"/>
+            android:background="@drawable/layer_menu_clock" />
 
         <ImageButton
             android:id="@+id/menu_act6"
             android:layout_width="0px"
             android:layout_height="fill_parent"
             android:layout_weight="0.5"
-            android:background="@drawable/menu_nav" />
+            android:background="@drawable/layer_menu_nav" />
 
     </LinearLayout>
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/white" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center"
+            android:layout_alignParentLeft="true"
+            android:text="@string/disconnect"
+            android:background="@color/transparent"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:gravity="center"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center"
+            android:layout_weight="0.5"
+            android:layout_alignParentRight="true"
+            android:background="@color/transparent"
+            android:src="@drawable/layer_menu_settings"
+            />
+    </RelativeLayout>
 
 
 

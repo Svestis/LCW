@@ -1,18 +1,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.pakos.lcw.ledControl">
+    android:paddingBottom="@dimen/activity_vertical_margin">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/imgBtn"
         android:layout_width="127dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="169dp"
+        android:layout_marginBottom="196dp"
+        android:text="Image"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/sendBtn"
+        android:layout_width="127dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="77dp"
         android:text="Send" />
 
     <Button
@@ -24,35 +34,32 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <Button
+        android:id="@+id/timeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="191dp"
+        android:layout_marginLeft="191dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toEndOf="@+id/button4"
+        android:layout_toRightOf="@+id/button4"
+        android:text="Time" />
+
     <EditText
         android:id="@+id/commandTxt"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="25dp"
         android:ems="10"
         android:inputType="textPersonName"
         tools:text="asd" />
-
-    <EditText
-        android:id="@+id/textSize"
-        android:layout_width="47dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="191dp"
-        android:ems="10"
-        android:inputType="number" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="180dp"
-        android:text="Text Size" />
 
     <ImageView
         android:id="@+id/testImg"
@@ -60,6 +67,47 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="123dp"
+        android:layout_marginBottom="186dp"
         android:src="@color/abc_input_method_navigation_guard" />
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/myRadioGroup"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="146dp"
+        android:text="Color" />
+
+
+    <RadioGroup
+        android:id="@+id/myRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/button4"
+        android:layout_above="@id/sendBtn"
+        android:layout_marginBottom="75dp"
+        android:checkedButton="@+id/sound">
+
+        <RadioButton
+            android:id="@+id/sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Small" />
+
+        <RadioButton
+            android:id="@+id/vibration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medium" />
+
+        <RadioButton
+            android:id="@+id/silent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Large" />
+
+    </RadioGroup>
+
 </RelativeLayout>

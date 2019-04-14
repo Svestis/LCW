@@ -1,9 +1,9 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="24dp"
-    android:height="24dp"
+    android:width="15dp"
+    android:height="15dp"
     android:viewportWidth="42"
     android:viewportHeight="42"
-    android:tint="#C0B200">
+    android:tint="#757573">
   <group android:translateX="9"
       android:translateY="9.875">
       <path
