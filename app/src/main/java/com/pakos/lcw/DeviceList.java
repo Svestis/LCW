@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Set;
@@ -26,6 +27,8 @@ public class DeviceList extends AppCompatActivity
     private BluetoothAdapter myBluetooth = null;
     private Set<BluetoothDevice> pairedDevices;
     public static String EXTRA_ADDRESS = "device_address";
+
+
 
     public void alert_Bluetooth(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(DeviceList.this);
@@ -48,6 +51,7 @@ public class DeviceList extends AppCompatActivity
             public void onClick(View view) {
                 myBluetooth.enable();
                 dialog.dismiss();
+                showpaired();
             }
         });
     }
@@ -118,6 +122,10 @@ public class DeviceList extends AppCompatActivity
                 }
             }
         });
+
+        if (myBluetooth.isEnabled()){
+            showpaired();
+        }
     }
 
     private void showpaired(){
@@ -127,7 +135,7 @@ public class DeviceList extends AppCompatActivity
         {
             for(BluetoothDevice bt : pairedDevices)
             {
-                list.add(device_type(bt.getBluetoothClass().getMajorDeviceClass()) + " " + bt.getName());
+                list.add(device_type(bt.getBluetoothClass().getMajorDeviceClass()) + " " + bt.getName() + "\n" + bt.getAddress());
             }
         }
         else
@@ -149,10 +157,13 @@ public class DeviceList extends AppCompatActivity
     private AdapterView.OnItemClickListener myListClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            String address = myBluetooth.getAddress();
+            String info = ((TextView) view).getText().toString();
+            String address = info.substring(info.length()-17);
             Intent blt_menu = new Intent(DeviceList.this, AppMenu.class);
             blt_menu.putExtra(EXTRA_ADDRESS, address);
             startActivity(blt_menu);
         }
     };
+
+
 }
