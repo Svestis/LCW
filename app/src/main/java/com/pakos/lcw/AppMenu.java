@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -40,7 +41,7 @@ public class AppMenu extends AppCompatActivity {
 
         Intent newint = getIntent();
         address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS); //receive the address of the bluetooth device
-        //new ConnectBT().execute(); //Call the class to connect
+        new ConnectBT().execute(); //Call the class to connect
 
         final Button disconnect = findViewById(R.id.disc);
         disconnect.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +55,7 @@ public class AppMenu extends AppCompatActivity {
             public void onClick(View view) {
                 Intent ledControl = new Intent(AppMenu.this, com.pakos.lcw.ledControl.class);
                 ledControl.putExtra(EXTRA_ADDRESS, address);
+                Disconnect();
                 startActivity(ledControl);
             }
         });
@@ -64,6 +66,7 @@ public class AppMenu extends AppCompatActivity {
                 Intent ledControl = new Intent(AppMenu.this, com.pakos.lcw.ledControlv2.class);
                 ledControl.putExtra(EXTRA_ADDRESS, address);
                 startActivity(ledControl);
+                Disconnect();
             }
         });
     }
@@ -72,16 +75,16 @@ public class AppMenu extends AppCompatActivity {
 
     private void Disconnect()
     {
-        if (btSocket!=null) //If the btSocket is busy
+        if (btSocket!=null)
         {
             try
             {
-                btSocket.close(); //close connection
+                btSocket.close();
             }
             catch (IOException e)
             { msg("Error");}
         }
-        finish(); //return to the first layout
+        finish();
 
     }
 
@@ -128,12 +131,12 @@ public class AppMenu extends AppCompatActivity {
 
             if (!ConnectSuccess)
             {
-                msg("Connection Failed. Is it a SPP Bluetooth? Try again.");
+                msg("Connection Failed.");
                 finish();
             }
             else
             {
-                msg("Connected.");
+                msg("Connected");
                 isBtConnected = true;
             }
             progress.dismiss();

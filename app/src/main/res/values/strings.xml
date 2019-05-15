@@ -32,6 +32,9 @@
     </string>
     <string name="cancel">Cancel</string>
     <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="enable">Enable</string>
+    <string name="dontenable">Do not enable</string>
     <string name="are_you_sure_you_want_to_skip">Are you sure that you want to skip?</string>
     <string name="pref_title_display_name">Display name</string>
     <string name="pref_default_display_name">John Smith</string>

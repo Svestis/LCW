@@ -2,6 +2,7 @@ package com.pakos.lcw;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -32,28 +33,40 @@ public class DeviceList extends AppCompatActivity
 
     public void alert_Bluetooth(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(DeviceList.this);
-        final View customAlert = getLayoutInflater().inflate(R.layout.action_request_enable_bluetooth, null);
+//        final View customAlert = getLayoutInflater().inflate(R.layout.action_request_enable_bluetooth, null);
+//        builder.setCancelable(false);
+//        ImageButton donotenable = customAlert.findViewById(R.id.cancel_enable_blt);
+//        ImageButton enable = customAlert.findViewById(R.id.enable_blt);
+//        builder.setView(customAlert);
+//        final AlertDialog dialog = builder.create();
+//        dialog.show();
+//        dialog.setCanceledOnTouchOutside(true);
+//        donotenable.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                dialog.dismiss();
+//            }
+//        });
+//        enable.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                myBluetooth.enable();
+//                dialog.dismiss();
+//                showpaired();
+//            }
+//        });
         builder.setCancelable(false);
-        ImageButton donotenable = customAlert.findViewById(R.id.cancel_enable_blt);
-        ImageButton enable = customAlert.findViewById(R.id.enable_blt);
-        builder.setView(customAlert);
-        final AlertDialog dialog = builder.create();
-        dialog.show();
-        dialog.setCanceledOnTouchOutside(true);
-        donotenable.setOnClickListener(new View.OnClickListener() {
+        builder.setTitle(R.string.enable_bluetooth);
+        builder.setMessage(R.string.enable_bluetooth_sub);
+        builder.setPositiveButton(R.string.enable, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-        enable.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            public void onClick(DialogInterface dialogInterface, int i) {
                 myBluetooth.enable();
-                dialog.dismiss();
                 showpaired();
             }
         });
+        builder.setNegativeButton(R.string.dontenable,null);
+        builder.show();
     }
 
     public String device_type(int i){

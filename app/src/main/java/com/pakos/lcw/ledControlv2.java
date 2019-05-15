@@ -188,9 +188,6 @@ public class ledControlv2 extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Disconnect();
-//        Intent appMenu = new Intent(ledControl.this, AppMenu.class);
-//        appMenu.putExtra(EXTRA_ADDRESS, address);
-//        startActivity(appMenu);
     }
 
     private void Disconnect()
@@ -204,8 +201,7 @@ public class ledControlv2 extends AppCompatActivity {
             catch (IOException e)
             { msg("Error");}
         }
-        finish(); //return to the first layout
-
+        finish();
     }
 
     private void sendText()
