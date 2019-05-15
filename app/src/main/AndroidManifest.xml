@@ -17,6 +17,7 @@
         <activity android:name=".FirstStart" />
         <activity android:name=".DeviceList" />
         <activity android:name=".ledControl" />
+        <activity android:name=".ledControlv2" />
         <activity android:name=".Welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

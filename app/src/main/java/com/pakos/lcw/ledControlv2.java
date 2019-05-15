@@ -32,7 +32,7 @@ import java.util.Calendar;
 import java.util.UUID;
 
 
-public class ledControl extends AppCompatActivity {
+public class ledControlv2 extends AppCompatActivity {
 
 
     Button btnSend, btnDis,image,timeBtn;
@@ -41,7 +41,6 @@ public class ledControl extends AppCompatActivity {
     String address = null;
     EditText command;
     private ProgressDialog progress;
-    public static String EXTRA_ADDRESS = "device_address";
     BluetoothAdapter myBluetooth = null;
     BluetoothSocket btSocket = null;
     private boolean isBtConnected = false;
@@ -187,7 +186,7 @@ public class ledControl extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         Disconnect();
 //        Intent appMenu = new Intent(ledControl.this, AppMenu.class);
 //        appMenu.putExtra(EXTRA_ADDRESS, address);
@@ -379,7 +378,7 @@ public class ledControl extends AppCompatActivity {
         @Override
         protected void onPreExecute()
         {
-            progress = ProgressDialog.show(ledControl.this, "Connecting...", "Please wait!!!");  //show a progress dialog
+            progress = ProgressDialog.show(ledControlv2.this, "Connecting...", "Please wait!!!");  //show a progress dialog
         }
 
         @Override
