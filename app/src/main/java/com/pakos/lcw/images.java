@@ -5,25 +5,26 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.skydoves.colorpickerpreference.ColorEnvelope;
-import com.skydoves.colorpickerpreference.ColorListener;
+
 import com.skydoves.colorpickerpreference.ColorPickerView;
+
 import java.io.IOException;
 import java.util.UUID;
 
-public class colorPicker extends AppCompatActivity {
-    ColorPickerView colorPickerView;
-    String color,address;
-    TextView colorSelected;
-    View colorShow;
-    Button selectColor;
+public class images extends AppCompatActivity {
+    ImageButton img1,img2,img3,img4,img5,img6;
+    String msg;
+    String address;
     private ProgressDialog progress;
     BluetoothAdapter myBluetooth = null;
     BluetoothSocket btSocket = null;
@@ -32,25 +33,61 @@ public class colorPicker extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_color_picker);
+        setContentView(R.layout.activity_images);
         Intent newint = getIntent();
         address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS);
         new ConnectBT().execute();
-        colorPickerView = findViewById(R.id.colorPickerView);
-        colorSelected = findViewById(R.id.coloselected);
-        colorShow = findViewById(R.id.colorshow);
-        selectColor = findViewById(R.id.selectcolor);
-        colorPickerView.setColorListener(new ColorListener() {
-            @Override
-            public void onColorSelected(ColorEnvelope colorEnvelope) {
-                color = colorEnvelope.getColorHtml();
-                colorSelected.setText(color);
-                colorShow.setBackgroundColor(colorEnvelope.getColor());
-            }
-        });
-        selectColor.setOnClickListener(new View.OnClickListener() {
+        img1 = findViewById(R.id.img1);
+        img2 = findViewById(R.id.img2);
+        img3 = findViewById(R.id.img3);
+        img4 = findViewById(R.id.img4);
+        img5 = findViewById(R.id.img5);
+        img6 = findViewById(R.id.img6);
+
+        img1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                msg = "img1.jpg";
+                sendText();
+            }
+        });
+
+        img2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                msg = "img2.jpg";
+                sendText();
+            }
+        });
+
+        img3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                msg = "img3.jpg";
+                sendText();
+            }
+        });
+
+        img4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                msg = "img4.jpg";
+                sendText();
+            }
+        });
+
+        img5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                msg = "img5.jpg";
+                sendText();
+            }
+        });
+
+        img6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                msg = "img6.jpg";
                 sendText();
             }
         });
@@ -63,7 +100,7 @@ public class colorPicker extends AppCompatActivity {
         {
             try
             {
-                btSocket.getOutputStream().write(colorSelected.getText().toString().getBytes());
+                btSocket.getOutputStream().write(msg.getBytes());
             }
             catch (IOException e)
             {
@@ -71,7 +108,6 @@ public class colorPicker extends AppCompatActivity {
             }
         }
     }
-
     @Override
     public void onBackPressed(){
         Disconnect();
@@ -88,7 +124,7 @@ public class colorPicker extends AppCompatActivity {
             catch (IOException e)
             { msg("Error");}
         }
-          finish();
+        finish();
     }
     private void msg(String s)
     {
@@ -102,7 +138,7 @@ public class colorPicker extends AppCompatActivity {
         @Override
         protected void onPreExecute()
         {
-            progress = ProgressDialog.show(colorPicker.this, "Loading...", "Please wait!!!");  //show a progress dialog
+            progress = ProgressDialog.show(images.this, "Loading...", "Please wait!");  //show a progress dialog
         }
 
         @Override
@@ -142,4 +178,5 @@ public class colorPicker extends AppCompatActivity {
             progress.dismiss();
         }
     }
+
 }

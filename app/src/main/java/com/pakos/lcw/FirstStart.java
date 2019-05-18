@@ -48,7 +48,7 @@ public class FirstStart extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("Preferences", MODE_PRIVATE);
         firstTimeOpen = sharedPreferences.getBoolean("firstTimeOpen",true);
         if(!firstTimeOpen){
-            startActivity(new Intent(FirstStart.this, colorPicker.class));
+            startActivity(new Intent(FirstStart.this, DeviceList.class));
             finish();
         }
         super.onCreate(savedInstanceState);
@@ -79,7 +79,7 @@ public class FirstStart extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 shared_pref();
-                startActivity(new Intent(FirstStart.this, colorPicker.class));
+                startActivity(new Intent(FirstStart.this, DeviceList.class));
                 finish();
             }
         };
@@ -93,7 +93,7 @@ public class FirstStart extends AppCompatActivity {
                         @Override
                         public void onClick (DialogInterface dialogInterface,int i){
                             shared_pref();
-                            startActivity(new Intent(FirstStart.this, colorPicker.class));
+                            startActivity(new Intent(FirstStart.this, DeviceList.class));
                             finish();
                         }
                     })

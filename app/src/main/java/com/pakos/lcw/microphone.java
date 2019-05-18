@@ -10,20 +10,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageButton;
 import android.widget.Toast;
-import com.skydoves.colorpickerpreference.ColorEnvelope;
-import com.skydoves.colorpickerpreference.ColorListener;
-import com.skydoves.colorpickerpreference.ColorPickerView;
+
 import java.io.IOException;
 import java.util.UUID;
 
-public class colorPicker extends AppCompatActivity {
-    ColorPickerView colorPickerView;
-    String color,address;
-    TextView colorSelected;
-    View colorShow;
-    Button selectColor;
+import pl.bclogic.pulsator4droid.library.PulsatorLayout;
+
+public class microphone extends AppCompatActivity {
+    String command = null;
+    private PulsatorLayout mPulsator;
+    Button listen;
+    String address = null;
     private ProgressDialog progress;
     BluetoothAdapter myBluetooth = null;
     BluetoothSocket btSocket = null;
@@ -32,29 +31,37 @@ public class colorPicker extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_color_picker);
+        setContentView(R.layout.activity_microphone);
         Intent newint = getIntent();
         address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS);
         new ConnectBT().execute();
-        colorPickerView = findViewById(R.id.colorPickerView);
-        colorSelected = findViewById(R.id.coloselected);
-        colorShow = findViewById(R.id.colorshow);
-        selectColor = findViewById(R.id.selectcolor);
-        colorPickerView.setColorListener(new ColorListener() {
-            @Override
-            public void onColorSelected(ColorEnvelope colorEnvelope) {
-                color = colorEnvelope.getColorHtml();
-                colorSelected.setText(color);
-                colorShow.setBackgroundColor(colorEnvelope.getColor());
-            }
-        });
-        selectColor.setOnClickListener(new View.OnClickListener() {
+        mPulsator = (PulsatorLayout) findViewById(R.id.pulsator);
+        listen = findViewById(R.id.startlistening);
+        listen.setOnClickListener(new View.OnClickListener() {
+            Boolean clicked = true;
             @Override
             public void onClick(View view) {
-                sendText();
+                if (clicked){
+                    listen.setText(R.string.stoplistening);
+                    listen.setBackgroundColor(getResources().getColor(R.color.transparentv2));
+                    clicked = false;
+                    mPulsator.setCount(4);
+                    mPulsator.setDuration(5000);
+                    mPulsator.setInterpolator(0);
+                    command = "Start";
+                    mPulsator.start();
+                    sendText();
+                }
+                else{
+                    listen.setText(R.string.startlistening);
+                    listen.setBackgroundResource(android.R.drawable.btn_default);
+                    command = "Stop";
+                    mPulsator.stop();
+                    clicked = true;
+                    sendText();
+                }
             }
         });
-
     }
 
     private void sendText()
@@ -63,7 +70,7 @@ public class colorPicker extends AppCompatActivity {
         {
             try
             {
-                btSocket.getOutputStream().write(colorSelected.getText().toString().getBytes());
+                btSocket.getOutputStream().write(command.getBytes());
             }
             catch (IOException e)
             {
@@ -72,28 +79,30 @@ public class colorPicker extends AppCompatActivity {
         }
     }
 
-    @Override
+
     public void onBackPressed(){
         Disconnect();
     }
-
     private void Disconnect()
     {
-        if (btSocket!=null) //If the btSocket is busy
+        if (btSocket!=null)
         {
             try
             {
-                btSocket.close(); //close connection
+                btSocket.close();
             }
             catch (IOException e)
             { msg("Error");}
         }
-          finish();
+        finish();
+
     }
+
     private void msg(String s)
     {
-        Toast.makeText(getApplicationContext(),s, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
     }
+
 
     private class ConnectBT extends AsyncTask<Void, Void, Void>  // UI thread
     {
@@ -102,7 +111,7 @@ public class colorPicker extends AppCompatActivity {
         @Override
         protected void onPreExecute()
         {
-            progress = ProgressDialog.show(colorPicker.this, "Loading...", "Please wait!!!");  //show a progress dialog
+            progress = ProgressDialog.show(microphone.this, "Loading...", "Please wait!");  //show a progress dialog
         }
 
         @Override

@@ -35,6 +35,39 @@
     android:layout_height="2dp"
     android:background="@color/colorPrimaryDark"/>
 
+    <RelativeLayout
+    android:id="@+id/activity_scan_layout"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1">
+        <ProgressBar
+            android:id="@+id/activity_scan_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dip"
+            android:indeterminate="true"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/activity_scan_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/activity_scan_progress"
+            android:padding="15dip"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:layout_alignParentTop="true"
+            android:layout_above="@+id/activity_scan_list" />
+
+    <ListView
+        android:id="@+id/activity_scan_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/activity_scan_progress"
+        />
+
+    </RelativeLayout>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

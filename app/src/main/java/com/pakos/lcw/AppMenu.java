@@ -9,10 +9,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
 import java.util.UUID;
@@ -39,9 +37,8 @@ public class AppMenu extends AppCompatActivity {
         button6 = findViewById(R.id.menu_act6);
 
         Intent newint = getIntent();
-        address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS); //receive the address of the bluetooth device
-        new ConnectBT().execute(); //Call the class to connect
-
+        address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS);
+        new ConnectBT().execute();
         final Button disconnect = findViewById(R.id.disc);
         disconnect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,25 +49,63 @@ public class AppMenu extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent ledControl = new Intent(AppMenu.this, colorPicker.class);
-                ledControl.putExtra(EXTRA_ADDRESS, address);
+                Intent color = new Intent(AppMenu.this, colorPicker.class);
+                color.putExtra(EXTRA_ADDRESS, address);
                 Disconnect();
-                startActivity(ledControl);
+                startActivity(color);
             }
         });
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent ledControl = new Intent(AppMenu.this, com.pakos.lcw.ledControlv2.class);
+                Intent img = new Intent(AppMenu.this, images.class);
+                img.putExtra(EXTRA_ADDRESS, address);
+                Disconnect();
+                startActivity(img);
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mic = new Intent(AppMenu.this, microphone.class);
+                mic.putExtra(EXTRA_ADDRESS, address);
+                startActivity(mic);
+                Disconnect();
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent sendText = new Intent(AppMenu.this, sendText.class);
+                sendText.putExtra(EXTRA_ADDRESS, address);
+                startActivity(sendText);
+                Disconnect();
+            }
+        });
+
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent time = new Intent(AppMenu.this, time.class);
+                time.putExtra(EXTRA_ADDRESS, address);
+                startActivity(time);
+                Disconnect();
+            }
+        });
+
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent ledControl = new Intent(AppMenu.this, ledControl.class);
                 ledControl.putExtra(EXTRA_ADDRESS, address);
                 startActivity(ledControl);
                 Disconnect();
             }
         });
     }
-
-
 
     private void Disconnect()
     {
@@ -83,8 +118,6 @@ public class AppMenu extends AppCompatActivity {
             catch (IOException e)
             { msg("Error");}
         }
-        finish();
-
     }
 
     private void msg(String s)
@@ -100,7 +133,7 @@ public class AppMenu extends AppCompatActivity {
         @Override
         protected void onPreExecute()
         {
-            progress = ProgressDialog.show(AppMenu.this, "Connecting...", "Please wait!!!");  //show a progress dialog
+           progress = ProgressDialog.show(AppMenu.this, "Connecting...", "Please wait!!!");  //show a progress dialog
         }
 
         @Override
@@ -119,7 +152,7 @@ public class AppMenu extends AppCompatActivity {
             }
             catch (IOException e)
             {
-                ConnectSuccess = false;//if the try failed, you can check the exception here
+                ConnectSuccess = false;
             }
             return null;
         }

@@ -12,16 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".colorPicker"></activity>
+        <activity android:name=".sendText"/>
+        <activity android:name=".time"/>
+        <activity android:name=".microphone" />
+        <activity android:name=".images" />
+        <activity android:name=".obsolete_imageGallery" />
+        <activity android:name=".colorPicker" />
         <activity android:name=".AppMenu" />
         <activity android:name=".FirstStart" />
         <activity android:name=".DeviceList" />
         <activity android:name=".ledControl" />
-        <activity android:name=".ledControlv2" />
         <activity android:name=".Welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
