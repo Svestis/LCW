@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -53,7 +52,7 @@ public class AppMenu extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent ledControl = new Intent(AppMenu.this, com.pakos.lcw.ledControl.class);
+                Intent ledControl = new Intent(AppMenu.this, colorPicker.class);
                 ledControl.putExtra(EXTRA_ADDRESS, address);
                 Disconnect();
                 startActivity(ledControl);

@@ -48,7 +48,7 @@ public class FirstStart extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("Preferences", MODE_PRIVATE);
         firstTimeOpen = sharedPreferences.getBoolean("firstTimeOpen",true);
         if(!firstTimeOpen){
-            startActivity(new Intent(FirstStart.this, DeviceList.class));
+            startActivity(new Intent(FirstStart.this, colorPicker.class));
             finish();
         }
         super.onCreate(savedInstanceState);
@@ -79,7 +79,7 @@ public class FirstStart extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 shared_pref();
-                startActivity(new Intent(FirstStart.this, DeviceList.class));
+                startActivity(new Intent(FirstStart.this, colorPicker.class));
                 finish();
             }
         };
@@ -87,36 +87,13 @@ public class FirstStart extends AppCompatActivity {
         skipClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                final AlertDialog.Builder builder = new AlertDialog.Builder(FirstStart.this);
-//                final View customAlert = getLayoutInflater().inflate(R.layout.alert_dialog_skip_firststart, null);
-//                builder.setCancelable(false);
-//                Button skip = customAlert.findViewById(R.id.cancel_btn);
-//                Button doskip = customAlert.findViewById(R.id.yes_btn);
-//                builder.setView(customAlert);
-//                final AlertDialog dialog = builder.create();
-//                dialog.show();
-//                dialog.setCanceledOnTouchOutside(true);
-//                skip.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//                doskip.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        shared_pref();
-//                        startActivity(new Intent(FirstStart.this, DeviceList.class));
-//                        finish();
-//                    }
-//                });
                 new AlertDialog.Builder(FirstStart.this)
                     .setTitle(R.string.are_you_sure_you_want_to_skip)
                     .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick (DialogInterface dialogInterface,int i){
                             shared_pref();
-                            startActivity(new Intent(FirstStart.this, DeviceList.class));
+                            startActivity(new Intent(FirstStart.this, colorPicker.class));
                             finish();
                         }
                     })

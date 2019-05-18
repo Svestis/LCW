@@ -12,8 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".AppMenu"/>
+        <activity android:name=".colorPicker"></activity>
+        <activity android:name=".AppMenu" />
         <activity android:name=".FirstStart" />
         <activity android:name=".DeviceList" />
         <activity android:name=".ledControl" />
@@ -26,4 +26,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
