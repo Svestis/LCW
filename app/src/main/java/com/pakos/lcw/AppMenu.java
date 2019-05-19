@@ -35,7 +35,7 @@ public class AppMenu extends AppCompatActivity {
         button4 = findViewById(R.id.menu_act4);
         button5 = findViewById(R.id.menu_act5);
         button6 = findViewById(R.id.menu_act6);
-
+        disconnect = findViewById(R.id.disc);
         Intent newint = getIntent();
         address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS);
         new ConnectBT().execute();
@@ -102,6 +102,13 @@ public class AppMenu extends AppCompatActivity {
                 Intent ledControl = new Intent(AppMenu.this, ledControl.class);
                 ledControl.putExtra(EXTRA_ADDRESS, address);
                 startActivity(ledControl);
+                Disconnect();
+            }
+        });
+
+        disconnect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Disconnect();
             }
         });
