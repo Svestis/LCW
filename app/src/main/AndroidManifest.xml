@@ -15,8 +15,8 @@
         <activity android:name=".sendText"/>
         <activity android:name=".time"/>
         <activity android:name=".microphone" />
-        <activity android:name=".images" />
-        <activity android:name=".obsolete_imageGallery" />
+        <activity android:name=".zzzz_obsolete_images" />
+        <activity android:name=".imageGallery" />
         <activity android:name=".colorPicker" />
         <activity android:name=".AppMenu" />
         <activity android:name=".FirstStart" />

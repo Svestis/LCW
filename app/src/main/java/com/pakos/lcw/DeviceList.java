@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,32 +28,8 @@ public class DeviceList extends AppCompatActivity
     private Set<BluetoothDevice> pairedDevices;
     public static String EXTRA_ADDRESS = "device_address";
 
-
-
     public void alert_Bluetooth(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(DeviceList.this);
-//        final View customAlert = getLayoutInflater().inflate(R.layout.action_request_enable_bluetooth, null);
-//        builder.setCancelable(false);
-//        ImageButton donotenable = customAlert.findViewById(R.id.cancel_enable_blt);
-//        ImageButton enable = customAlert.findViewById(R.id.enable_blt);
-//        builder.setView(customAlert);
-//        final AlertDialog dialog = builder.create();
-//        dialog.show();
-//        dialog.setCanceledOnTouchOutside(true);
-//        donotenable.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                dialog.dismiss();
-//            }
-//        });
-//        enable.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                myBluetooth.enable();
-//                dialog.dismiss();
-//                showpaired();
-//            }
-//        });
         builder.setCancelable(false);
         builder.setTitle(R.string.enable_bluetooth);
         builder.setMessage(R.string.enable_bluetooth_sub);

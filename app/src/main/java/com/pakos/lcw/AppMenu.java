@@ -59,7 +59,7 @@ public class AppMenu extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent img = new Intent(AppMenu.this, images.class);
+                Intent img = new Intent(AppMenu.this, imageGallery.class);
                 img.putExtra(EXTRA_ADDRESS, address);
                 Disconnect();
                 startActivity(img);
@@ -110,6 +110,7 @@ public class AppMenu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Disconnect();
+                finish();
             }
         });
     }
