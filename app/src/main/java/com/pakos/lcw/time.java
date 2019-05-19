@@ -53,7 +53,7 @@ public class time extends AppCompatActivity {
         address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS); //receive the address of the bluetooth device
         setContentView(R.layout.activity_time);
         btnSend = (Button) findViewById(R.id.sendtime);
-        btnTimer = (Button) findViewById(R.id.sendtime);
+        btnTimer = (Button) findViewById(R.id.timerbtn);
         displaytime = findViewById(R.id.displaytime);
         Typeface font = Typeface.createFromAsset(this.getAssets(),"Tangerine-B.ttf");
         displaytime.setTypeface(font);
