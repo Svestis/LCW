@@ -64,7 +64,7 @@ public class colorPicker extends AppCompatActivity {
         {
             try
             {
-                btSocket.getOutputStream().write(colorSelected.getText().toString().getBytes());
+                btSocket.getOutputStream().write(color.toString().getBytes());
             }
             catch (IOException e)
             {
