@@ -10,12 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Toast;
-
 import java.io.IOException;
 import java.util.UUID;
-
 import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
 public class microphone extends AppCompatActivity {
@@ -35,7 +32,7 @@ public class microphone extends AppCompatActivity {
         Intent newint = getIntent();
         address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS);
         new ConnectBT().execute();
-        mPulsator = (PulsatorLayout) findViewById(R.id.pulsator);
+        mPulsator = findViewById(R.id.pulsator);
         listen = findViewById(R.id.startlistening);
         listen.setOnClickListener(new View.OnClickListener() {
             Boolean clicked = true;
@@ -83,6 +80,7 @@ public class microphone extends AppCompatActivity {
     public void onBackPressed(){
         Disconnect();
     }
+
     private void Disconnect()
     {
         if (btSocket!=null)
@@ -104,38 +102,38 @@ public class microphone extends AppCompatActivity {
     }
 
 
-    private class ConnectBT extends AsyncTask<Void, Void, Void>  // UI thread
+    private class ConnectBT extends AsyncTask<Void, Void, Void>
     {
-        private boolean ConnectSuccess = true; //if it's here, it's almost connected
+        private boolean ConnectSuccess = true;
 
         @Override
         protected void onPreExecute()
         {
-            progress = ProgressDialog.show(microphone.this, "Loading...", "Please wait!");  //show a progress dialog
+            progress = ProgressDialog.show(microphone.this, "Loading...", "Please wait!");
         }
 
         @Override
-        protected Void doInBackground(Void... devices) //while the progress dialog is shown, the connection is done in background
+        protected Void doInBackground(Void... devices)
         {
             try
             {
                 if (btSocket == null || !isBtConnected)
                 {
-                    myBluetooth = BluetoothAdapter.getDefaultAdapter();//get the mobile bluetooth device
-                    BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(address);//connects to the device's address and checks if it's available
-                    btSocket = dispositivo.createInsecureRfcommSocketToServiceRecord(myUUID);//create a RFCOMM (SPP) connection
+                    myBluetooth = BluetoothAdapter.getDefaultAdapter();
+                    BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(address);
+                    btSocket = dispositivo.createInsecureRfcommSocketToServiceRecord(myUUID);
                     BluetoothAdapter.getDefaultAdapter().cancelDiscovery();
-                    btSocket.connect();//start connection
+                    btSocket.connect();
                 }
             }
             catch (IOException e)
             {
-                ConnectSuccess = false;//if the try failed, you can check the exception here
+                ConnectSuccess = false;
             }
             return null;
         }
         @Override
-        protected void onPostExecute(Void result) //after the doInBackground, it checks if everything went fine
+        protected void onPostExecute(Void result)
         {
             super.onPostExecute(result);
 

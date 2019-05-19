@@ -100,7 +100,7 @@ public class imageGallery extends AppCompatActivity {
         @Override
         protected void onPreExecute()
         {
-            progress = ProgressDialog.show(imageGallery.this, "Loading...", "Please wait!");  //show a progress dialog
+            progress = ProgressDialog.show(imageGallery.this, "Loading...", "Please wait!");
         }
 
         @Override

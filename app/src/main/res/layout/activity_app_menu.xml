@@ -18,6 +18,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="0.5"
             android:background="@drawable/layer_menu_bulb"
+            android:contentDescription="@string/first_option"
             />
 
         <ImageButton

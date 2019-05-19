@@ -99,10 +99,6 @@ public class AppMenu extends AppCompatActivity {
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent ledControl = new Intent(AppMenu.this, ledControl.class);
-                ledControl.putExtra(EXTRA_ADDRESS, address);
-                startActivity(ledControl);
-                Disconnect();
             }
         });
 
@@ -134,28 +130,28 @@ public class AppMenu extends AppCompatActivity {
     }
 
 
-    private class ConnectBT extends AsyncTask<Void, Void, Void>  // UI thread
+    private class ConnectBT extends AsyncTask<Void, Void, Void>
     {
-        private boolean ConnectSuccess = true; //if it's here, it's almost connected
+        private boolean ConnectSuccess = true;
 
         @Override
         protected void onPreExecute()
         {
-           progress = ProgressDialog.show(AppMenu.this, "Connecting...", "Please wait!!!");  //show a progress dialog
+           progress = ProgressDialog.show(AppMenu.this, "Connecting...", "Please wait!");
         }
 
         @Override
-        protected Void doInBackground(Void... devices) //while the progress dialog is shown, the connection is done in background
+        protected Void doInBackground(Void... devices)
         {
             try
             {
                 if (btSocket == null || !isBtConnected)
                 {
-                    myBluetooth = BluetoothAdapter.getDefaultAdapter();//get the mobile bluetooth device
-                    BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(address);//connects to the device's address and checks if it's available
-                    btSocket = dispositivo.createInsecureRfcommSocketToServiceRecord(myUUID);//create a RFCOMM (SPP) connection
+                    myBluetooth = BluetoothAdapter.getDefaultAdapter();
+                    BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(address);
+                    btSocket = dispositivo.createInsecureRfcommSocketToServiceRecord(myUUID);
                     BluetoothAdapter.getDefaultAdapter().cancelDiscovery();
-                    btSocket.connect();//start connection
+                    btSocket.connect();
                 }
             }
             catch (IOException e)
@@ -165,7 +161,7 @@ public class AppMenu extends AppCompatActivity {
             return null;
         }
         @Override
-        protected void onPostExecute(Void result) //after the doInBackground, it checks if everything went fine
+        protected void onPostExecute(Void result)
         {
             super.onPostExecute(result);
 

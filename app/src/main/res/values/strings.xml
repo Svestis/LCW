@@ -47,4 +47,5 @@
     <string name="pref_title_system_sync_settings">System sync settings</string>
     <string name="disconnect">Disconnect</string>
     <string name="title_activity_color_picker">colorPicker</string>
+    <string name="first_option">First option</string>
 </resources>

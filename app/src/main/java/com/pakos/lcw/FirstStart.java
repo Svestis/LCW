@@ -2,10 +2,6 @@ package com.pakos.lcw;
 //COMPLETED: DONE customize alert dialog appearance for skip into
 //COMPLETED: DONE button appearance on alert dialog for skip
 //COMPLETED: make the intend open only on first load
-//todo: change button appearance on alert dialog for quit
-//todo: customize alert dialog appearance for quit app
-//todo: change button appearance on click
-//todo: getting things ready intent
 //REMOVED: entirely close app on back
 //COMPLETED: fixing onbackpressed for skip View
 //COMPLETED: fix deprecated html + get color

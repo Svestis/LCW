@@ -15,17 +15,21 @@
         <activity android:name=".sendText"/>
         <activity android:name=".time"/>
         <activity android:name=".microphone" />
-        <activity android:name=".zzzz_obsolete_images" />
         <activity android:name=".imageGallery" />
         <activity android:name=".colorPicker" />
         <activity android:name=".AppMenu" />
         <activity android:name=".FirstStart" />
         <activity android:name=".DeviceList" />
-        <activity android:name=".ledControl" />
         <activity android:name=".Welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                    android:host="lcw"
+                    android:scheme="pectus"/>
             </intent-filter>
         </activity>
     </application>

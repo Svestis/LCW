@@ -9,7 +9,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,8 +25,7 @@ public class sendText extends AppCompatActivity {
     int bColorint,tColorint;
     View text, background;
     String address = null;
-    String msg;
-    String bColorHtml = "#FFFFFF";
+    String bColorHtml = "#FFFFFF",msg;
     String tColorHtml = "#000000";
     EditText command;
     private ProgressDialog progress;
@@ -54,9 +52,6 @@ public class sendText extends AppCompatActivity {
             {
                 bColorHtml = String.format("#%06X", (0xFFFFFF & bColorint));
                 tColorHtml = String.format("#%06X", (0xFFFFFF & tColorint));
-                Log.i("Tag",bColorHtml.substring(bColorHtml.length()-6)+
-                        tColorHtml.substring(tColorHtml.length()-6));
-                Log.i("Tag",bColorHtml+ tColorHtml);
                 msg=command.getText()+bColorHtml.substring(bColorHtml.length()-6)+
                         tColorHtml.substring(tColorHtml.length()-6);
                 sendText();

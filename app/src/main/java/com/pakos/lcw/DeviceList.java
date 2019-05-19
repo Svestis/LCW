@@ -151,6 +151,4 @@ public class DeviceList extends AppCompatActivity
             startActivity(blt_menu);
         }
     };
-
-
 }
