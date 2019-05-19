@@ -7,7 +7,9 @@ import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,9 +19,16 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.UUID;
 
+import yuku.ambilwarna.AmbilWarnaDialog;
+
 public class sendText extends AppCompatActivity {
-    Button btnSend;
+    Button btnSend,bColor,tColor;
+    int bColorint,tColorint;
+    View text, background;
     String address = null;
+    String msg;
+    String bColorHtml = "#FFFFFF";
+    String tColorHtml = "#000000";
     EditText command;
     private ProgressDialog progress;
     public static String EXTRA_ADDRESS = "device_address";
@@ -43,9 +52,67 @@ public class sendText extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                bColorHtml = String.format("#%06X", (0xFFFFFF & bColorint));
+                tColorHtml = String.format("#%06X", (0xFFFFFF & tColorint));
+                Log.i("Tag",bColorHtml.substring(bColorHtml.length()-6)+
+                        tColorHtml.substring(tColorHtml.length()-6));
+                Log.i("Tag",bColorHtml+ tColorHtml);
+                msg=command.getText()+bColorHtml.substring(bColorHtml.length()-6)+
+                        tColorHtml.substring(tColorHtml.length()-6);
                 sendText();
             }
         });
+        text = findViewById(R.id.colorshowtext);
+        background = findViewById(R.id.colorshowbackground);
+        bColorint = ContextCompat.getColor(sendText.this,android.R.color.white);
+        tColorint = ContextCompat.getColor(sendText.this, android.R.color.black);
+        bColor = findViewById(R.id.pickbackcolor);
+        tColor = findViewById(R.id.picktextcolor);
+        bColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               openColorPickerback();
+            }
+        });
+
+        tColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openColorPickertext();
+            }
+        });
+    }
+
+    public void openColorPickertext(){
+        AmbilWarnaDialog colorPicker2 = new AmbilWarnaDialog(this, tColorint, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+            @Override
+            public void onCancel(AmbilWarnaDialog dialog) {
+
+            }
+
+            @Override
+            public void onOk(AmbilWarnaDialog dialog, int color) {
+                tColorint = color;
+                text.setBackgroundColor(tColorint);
+            }
+        });
+        colorPicker2.show();
+    }
+
+    public void openColorPickerback(){
+        AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(this, bColorint, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+            @Override
+            public void onCancel(AmbilWarnaDialog dialog) {
+
+            }
+
+            @Override
+            public void onOk(AmbilWarnaDialog dialog, int color) {
+                bColorint = color;
+                background.setBackgroundColor(bColorint);
+            }
+        });
+        colorPicker.show();
     }
 
     @Override
@@ -73,7 +140,7 @@ public class sendText extends AppCompatActivity {
         {
             try
             {
-                btSocket.getOutputStream().write(command.getText().toString().getBytes());
+                btSocket.getOutputStream().write(msg.getBytes());
             }
             catch (IOException e)
             {

@@ -37,7 +37,6 @@ public class DeviceList extends AppCompatActivity
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 myBluetooth.enable();
-                showpaired();
             }
         });
         builder.setNegativeButton(R.string.dontenable,null);

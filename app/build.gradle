@@ -40,4 +40,5 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:+'
     implementation 'com.github.skydoves:colorpickerpreference:1.0.2'
     implementation 'pl.bclogic:pulsator4droid:1.0.3'
+    implementation 'com.github.yukuku:ambilwarna:2.0.1'
 }
