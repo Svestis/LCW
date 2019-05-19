@@ -25,4 +25,13 @@
         android:layout_marginBottom="77dp"
         android:text="Time" />
 
+    <Button
+        android:id="@+id/timerbtn"
+        android:layout_width="127dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/sendtime"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:text="Start Timer" />
+
 </RelativeLayout>

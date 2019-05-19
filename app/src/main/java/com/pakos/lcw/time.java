@@ -36,6 +36,7 @@ import java.util.UUID;
 
 public class time extends AppCompatActivity {
     Button btnSend;
+    Button btnTimer;
     String address = null;
     TextView displaytime;
     private ProgressDialog progress;
@@ -52,10 +53,12 @@ public class time extends AppCompatActivity {
         address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS); //receive the address of the bluetooth device
         setContentView(R.layout.activity_time);
         btnSend = (Button) findViewById(R.id.sendtime);
+        btnTimer = (Button) findViewById(R.id.sendtime);
         displaytime = findViewById(R.id.displaytime);
         Typeface font = Typeface.createFromAsset(this.getAssets(),"Tangerine-B.ttf");
         displaytime.setTypeface(font);
         new ConnectBT().execute();
+
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +67,19 @@ public class time extends AppCompatActivity {
                         DateFormat df = new SimpleDateFormat("HHmmss");
                         String date = df.format(Calendar.getInstance().getTime());
                         btSocket.getOutputStream().write(("time" + date).getBytes());
+                    } catch (IOException e) {
+                        msg("Error");
+                    }
+                }
+            }
+        });
+
+        btnTimer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (btSocket != null) {
+                    try {
+                        btSocket.getOutputStream().write(("time000000").getBytes());
                     } catch (IOException e) {
                         msg("Error");
                     }
