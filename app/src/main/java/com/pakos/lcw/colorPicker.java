@@ -20,8 +20,7 @@ import java.util.UUID;
 
 public class colorPicker extends AppCompatActivity {
     ColorPickerView colorPickerView;
-    String address;
-    int[] color;
+    String address,color;
     TextView colorSelected;
     View colorShow;
     Button selectColor;
@@ -44,7 +43,7 @@ public class colorPicker extends AppCompatActivity {
         colorPickerView.setColorListener(new ColorListener() {
             @Override
             public void onColorSelected(ColorEnvelope colorEnvelope) {
-                color = colorEnvelope.getColorRGB();
+                color = "back"+colorEnvelope.getColorHtml();
                 colorSelected.setText(colorEnvelope.getColorHtml());
                 colorShow.setBackgroundColor(colorEnvelope.getColor());
             }
@@ -64,7 +63,7 @@ public class colorPicker extends AppCompatActivity {
         {
             try
             {
-                btSocket.getOutputStream().write(color.toString().getBytes());
+                btSocket.getOutputStream().write(color.getBytes());
             }
             catch (IOException e)
             {
