@@ -45,7 +45,7 @@ public class microphone extends AppCompatActivity {
                     mPulsator.setCount(4);
                     mPulsator.setDuration(5000);
                     mPulsator.setInterpolator(0);
-                    command = "eqlz";
+                    command = "equal";
                     mPulsator.start();
                     sendText();
                 }
