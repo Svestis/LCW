@@ -3,11 +3,6 @@
 
     <item android:drawable="@drawable/background_square"
         />
-    <!--<item android:drawable="@drawable/background_circle"-->
-        <!--android:height="100dp"-->
-        <!--android:width="100dp"-->
-        <!--android:gravity="center"-->
-        <!--/>-->
     <item android:drawable="@drawable/logo"
         android:gravity="center"
         />
