@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:text="Text Color"
         android:layout_below="@+id/commandTxt"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:id="@+id/textcolor"
         android:layout_centerHorizontal="true"
         android:textSize="15dp">
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:text="Background Color"
         android:layout_below="@+id/picktextcolor"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:id="@+id/bcolor"
         android:layout_centerHorizontal="true"
         android:textSize="15dp">
@@ -100,5 +100,23 @@
         android:layout_marginTop="5dp"
         android:id="@+id/pickbackcolor"
         android:text="Select background color"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select text size"
+        android:layout_below="@+id/pickbackcolor"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:id="@+id/picksize"
+        android:textSize="15dp"/>
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/picksize"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/spinnersize"
+        android:background="@color/gretwhite2"/>
 
 </RelativeLayout>

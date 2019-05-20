@@ -59,7 +59,8 @@
         android:layout_width="fill_parent"
         android:layout_height="0px"
         android:layout_weight="0.5"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:background="@color/transparent">
 
         <ImageButton
             android:id="@+id/menu_act5"
@@ -73,7 +74,10 @@
             android:layout_width="0px"
             android:layout_height="fill_parent"
             android:layout_weight="0.5"
-            android:background="@drawable/layer_menu_nav" />
+            android:src="@drawable/logo"
+            android:scaleType="fitCenter"
+            android:background="@color/transparent"
+            />
 
     </LinearLayout>
     <RelativeLayout

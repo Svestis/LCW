@@ -9,23 +9,27 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 import java.io.IOException;
 import java.util.UUID;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
-public class sendText extends AppCompatActivity {
+public class sendText extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Button btnSend,bColor,tColor;
     int bColorint,tColorint;
     View text, background;
     String address = null;
-    String bColorHtml = "#FFFFFF",msg;
+    String bColorHtml = "#FFFFFF",msg,spinnerselection;
     String tColorHtml = "#000000";
     EditText command;
     private ProgressDialog progress;
@@ -43,6 +47,13 @@ public class sendText extends AppCompatActivity {
         Intent newint = getIntent();
         address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS);
         new ConnectBT().execute();
+        Spinner spinner = findViewById(R.id.spinnersize);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.spinnervalues, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+
         btnSend = findViewById(R.id.sendBtn);
         command = findViewById(R.id.commandTxt);
         btnSend.setOnClickListener(new View.OnClickListener()
@@ -53,7 +64,7 @@ public class sendText extends AppCompatActivity {
                 bColorHtml = String.format("#%06X", (0xFFFFFF & bColorint));
                 tColorHtml = String.format("#%06X", (0xFFFFFF & tColorint));
                 msg="text"+bColorHtml.substring(bColorHtml.length()-6)+
-                        tColorHtml.substring(tColorHtml.length()-6)+command.getText();
+                        tColorHtml.substring(tColorHtml.length()-6)+spinnerselection+command.getText();
                 sendText();
             }
         });
@@ -76,6 +87,25 @@ public class sendText extends AppCompatActivity {
                 openColorPickertext();
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        if(i==0){
+            spinnerselection = "1";
+        }
+        else if(i==1)
+        {
+            spinnerselection = "2";
+        }
+        else {
+            spinnerselection = "3";
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 
     public void openColorPickertext(){

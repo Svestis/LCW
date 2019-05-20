@@ -18,6 +18,7 @@ import java.util.UUID;
 public class AppMenu extends AppCompatActivity {
     ImageButton button1, button2, button3, button4, button5, button6;
     Button disconnect;
+    final String image = "logo.bmp";
     public static String EXTRA_ADDRESS = "device_address";
     String address = null;
     private ProgressDialog progress;
@@ -99,6 +100,7 @@ public class AppMenu extends AppCompatActivity {
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sendText();
             }
         });
 
@@ -109,6 +111,21 @@ public class AppMenu extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void sendText()
+    {
+        if (btSocket!=null)
+        {
+            try
+            {
+                btSocket.getOutputStream().write(image.getBytes());
+            }
+            catch (IOException e)
+            {
+                msg("Error");
+            }
+        }
     }
 
     private void Disconnect()
