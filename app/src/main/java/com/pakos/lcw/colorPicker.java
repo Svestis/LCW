@@ -51,7 +51,7 @@ public class colorPicker extends AppCompatActivity {
         selectColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendText();
+              sendText();
             }
         });
 

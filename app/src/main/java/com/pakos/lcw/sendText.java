@@ -52,8 +52,8 @@ public class sendText extends AppCompatActivity {
             {
                 bColorHtml = String.format("#%06X", (0xFFFFFF & bColorint));
                 tColorHtml = String.format("#%06X", (0xFFFFFF & tColorint));
-                msg=command.getText()+bColorHtml.substring(bColorHtml.length()-6)+
-                        tColorHtml.substring(tColorHtml.length()-6);
+                msg="text"+bColorHtml.substring(bColorHtml.length()-6)+
+                        tColorHtml.substring(tColorHtml.length()-6)+command.getText();
                 sendText();
             }
         });
