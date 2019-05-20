@@ -45,14 +45,14 @@ public class microphone extends AppCompatActivity {
                     mPulsator.setCount(4);
                     mPulsator.setDuration(5000);
                     mPulsator.setInterpolator(0);
-                    command = "Start";
+                    command = "eqlz";
                     mPulsator.start();
                     sendText();
                 }
                 else{
                     listen.setText(R.string.startlistening);
                     listen.setBackgroundResource(android.R.drawable.btn_default);
-                    command = "Stop";
+                    command = "b000000";
                     mPulsator.stop();
                     clicked = true;
                     sendText();
