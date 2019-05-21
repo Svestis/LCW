@@ -25,7 +25,7 @@
         android:layout_marginBottom="77dp"
         android:text="Time"
         android:textColor="@color/white"
-        android:background="@color/transparent"/>
+        android:background="@drawable/button_other"/>
 
     <Button
         android:id="@+id/timerbtn"
@@ -36,6 +36,6 @@
         android:layout_marginBottom="25dp"
         android:text="Start Timer"
         android:textColor="@color/white"
-        android:background="@color/transparent"/>
+        android:background="@drawable/button_other"/>
 
 </RelativeLayout>

@@ -62,7 +62,7 @@
                 android:layout_gravity="center"
                 android:id="@+id/selectcolor"
                 android:textColor="@color/white"
-                android:background="@color/transparent"/>
+                android:background="@drawable/button_other"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

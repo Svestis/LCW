@@ -114,6 +114,8 @@
             android:layout_alignParentRight="true"
             android:background="@color/transparent"
             android:src="@drawable/layer_menu_settings"
+            android:id="@+id/settings"
+            android:onClick="showPopup"
             />
     </RelativeLayout>
 

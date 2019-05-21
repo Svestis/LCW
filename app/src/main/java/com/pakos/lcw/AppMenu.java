@@ -1,22 +1,27 @@
 package com.pakos.lcw;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
 import java.util.UUID;
 
 public class AppMenu extends AppCompatActivity {
-    ImageButton button1, button2, button3, button4, button5, button6;
+    ImageButton button1, button2, button3, button4, button5, button6, settings;
+    Dialog settingsDialog;
     Button disconnect;
     final String image = "logo.bmp";
     public static String EXTRA_ADDRESS = "device_address";
@@ -111,6 +116,36 @@ public class AppMenu extends AppCompatActivity {
                 finish();
             }
         });
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopup(view);
+            }
+        });
+
+    }
+
+    public void showPopup(View view){
+        TextView close;
+        Button support;
+        settingsDialog.setContentView(R.layout.settings_popup);
+        close = settingsDialog.findViewById(R.id.txtclose);
+        support = settingsDialog.findViewById(R.id.btnsupport);
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                settingsDialog.dismiss();
+            }
+        });
+        support.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        settingsDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        settingsDialog.show();
     }
 
     private void sendText()

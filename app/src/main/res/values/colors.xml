@@ -6,6 +6,7 @@
     <color name="white">#ffffff</color>
     <color name="transparent">#00CCCCCC</color>
     <color name="transparentv2">#20CCCCCC</color>
+    <color name="transparentv3">#5ECCCCCC</color>
     <color name="inactivebutton">#20CCCCCC</color>
     <color name="gretwhite">#B6B5B5</color>
     <color name="gretwhite2">#E6E6E6</color>
@@ -14,4 +15,7 @@
     <color name="tirk">#26d0ce</color>
     <color name="black">#000000</color>
     <color name="textback">#707070</color>
+    <color name="credits1">#49acd5</color>
+    <color name="credits2">#45bc62</color>
+    <color name="credits3">#eaad43</color>
 </resources>

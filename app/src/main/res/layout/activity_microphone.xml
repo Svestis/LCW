@@ -48,8 +48,7 @@
                 android:text="@string/startlistening"
                 tools:ignore="RelativeOverlap"
                 android:textColor="@color/white"
-                android:background="@color/transparent"
-/>
+                android:background="@drawable/button_other"/>
         </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>

@@ -42,15 +42,18 @@
     <string name="pref_title_display_name">Display name</string>
     <string name="pref_default_display_name">John Smith</string>
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-
     <string-array name="multi_select_list_preference_default_value" />
     <string-array name="spinnervalues">
         <item>Small</item>
         <item>Medium</item>
         <item>Big</item>
     </string-array>
+    <string name="student"> G. K. Georgiou \u0026 P. Koilakos</string>
     <string name="pref_title_system_sync_settings">System sync settings</string>
     <string name="disconnect">Disconnect</string>
     <string name="title_activity_color_picker">colorPicker</string>
     <string name="first_option">First option</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
