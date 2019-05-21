@@ -19,7 +19,9 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="77dp"
-        android:text="Send Text" />
+        android:text="Send Text"
+        android:textColor="@color/white"
+        android:background="@color/transparent"/>
 
     <EditText
         android:id="@+id/commandTxt"
@@ -67,7 +69,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:id="@+id/picktextcolor"
-        android:text="Select text color"/>
+        android:text="Select text color"
+        android:textColor="@color/white"
+        android:background="@color/transparent"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -99,7 +103,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:id="@+id/pickbackcolor"
-        android:text="Select background color"/>
+        android:text="Select background color"
+        android:textColor="@color/white"
+        android:background="@color/transparent"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

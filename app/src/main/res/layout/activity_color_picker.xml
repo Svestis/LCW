@@ -60,7 +60,9 @@
                 android:textSize="20sp"
                 android:text="@string/setcolor"
                 android:layout_gravity="center"
-                android:id="@+id/selectcolor"/>
+                android:id="@+id/selectcolor"
+                android:textColor="@color/white"
+                android:background="@color/transparent"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

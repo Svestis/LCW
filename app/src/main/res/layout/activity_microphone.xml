@@ -47,6 +47,8 @@
                 android:layout_centerVertical="true"
                 android:text="@string/startlistening"
                 tools:ignore="RelativeOverlap"
+                android:textColor="@color/white"
+                android:background="@color/transparent"
 />
         </RelativeLayout>
     </LinearLayout>
