@@ -32,7 +32,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ImageV
         viewHolder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String log = "img" + (i + 1) + ".bmp";
+                String log = "imagimg" + (i + 1) + ".bmp";
                 Intent intent = new Intent("custom-message");
                 intent.putExtra("img",log);
                 LocalBroadcastManager.getInstance(context).sendBroadcast(intent);

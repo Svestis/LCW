@@ -43,7 +43,7 @@ public class colorPicker extends AppCompatActivity {
         colorPickerView.setColorListener(new ColorListener() {
             @Override
             public void onColorSelected(ColorEnvelope colorEnvelope) {
-                color = "back"+colorEnvelope.getColorHtml();
+                color = "text"+colorEnvelope.getColorHtml()+colorEnvelope.getColorHtml()+1+"";
                 colorSelected.setText(colorEnvelope.getColorHtml());
                 colorShow.setBackgroundColor(colorEnvelope.getColor());
             }

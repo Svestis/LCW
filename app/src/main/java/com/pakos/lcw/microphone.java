@@ -55,6 +55,7 @@ public class microphone extends AppCompatActivity {
                     command = "b000000";
                     mPulsator.stop();
                     clicked = true;
+                    listen.setBackgroundResource(R.drawable.button_other);
                     sendText();
                 }
             }

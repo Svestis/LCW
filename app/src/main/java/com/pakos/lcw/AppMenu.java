@@ -23,7 +23,7 @@ public class AppMenu extends AppCompatActivity {
     ImageButton button1, button2, button3, button4, button5, button6, settings;
     Dialog settingsDialog;
     Button disconnect;
-    final String image = "logo.bmp";
+    final String imglogo = "imaglogo.bmp";
     public static String EXTRA_ADDRESS = "device_address";
     String address = null;
     private ProgressDialog progress;
@@ -42,6 +42,7 @@ public class AppMenu extends AppCompatActivity {
         button5 = findViewById(R.id.menu_act5);
         button6 = findViewById(R.id.menu_act6);
         disconnect = findViewById(R.id.disc);
+        settings = findViewById(R.id.settings);
         Intent newint = getIntent();
         address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS);
         new ConnectBT().execute();
@@ -116,13 +117,7 @@ public class AppMenu extends AppCompatActivity {
                 finish();
             }
         });
-
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showPopup(view);
-            }
-        });
+        settingsDialog = new Dialog(this);
 
     }
 
@@ -138,12 +133,6 @@ public class AppMenu extends AppCompatActivity {
                 settingsDialog.dismiss();
             }
         });
-        support.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
         settingsDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         settingsDialog.show();
     }
@@ -154,7 +143,7 @@ public class AppMenu extends AppCompatActivity {
         {
             try
             {
-                btSocket.getOutputStream().write(image.getBytes());
+                btSocket.getOutputStream().write(imglogo.getBytes());
             }
             catch (IOException e)
             {
