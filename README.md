@@ -1,4 +1,4 @@
-!(/assets/logo.PNG)
+![The LCW logo](/assets/logo.PNG)
 # LCW
 LCW warable app
 
