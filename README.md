@@ -8,20 +8,20 @@ The app was connected via bluetooth with an Arduino developed wearable.
 
 ## The start screen
 
-!(/assets/lcw.png)
+![The LCW start screen](/assets/lcw.png)
 
 
 ## The welcome screen
 
-!(/assets/lcw_start.png)
+![The LCW welcome screen](/assets/lcw_start.png)
 
 
 ## The bluetooth screen
 
 
-!(/assets/lcw_bluetooth.png)
+![The LCW bluetooth screen](/assets/lcw_bluetooth.png)
 
 
 ## The menu
 
-!(/assets/lcw_menu.png)
+![The LCW menu screen](/assets/lcw_menu.png)
