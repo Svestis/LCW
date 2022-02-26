@@ -1,4 +1,4 @@
-!(/assets/logo.png)
+!(/assets/logo.PNG)
 # LCW
 LCW warable app
 
@@ -24,4 +24,4 @@ The app was connected via bluetooth with an Arduino developed wearable.
 
 ## The menu
 
-![The LCW menu screen](/assets/lcw_menu.png)
+![The LCW menu screen](/assets/lcw_menu.jpg)
